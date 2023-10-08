@@ -2,7 +2,7 @@ FROM node:18-alpine
 WORKDIR /app
 ADD / /app
 
-RUN yarn install --production
+RUN yarn
 
 RUN yarn build
 EXPOSE 3000

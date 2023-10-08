@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# FILEPATH: typing_website.py
+
+class TypingWebsite:
+  def __init__(self, name):
+    self.name = name
+    self.words_per_minute = 0
+
+  def calculate_words_per_minute(self, words_typed, time_elapsed):
+    self.words_per_minute = words_typed / (time_elapsed / 60)
+
+# FILEPATH: README.md
+
+# TypeElegance Typing Website
+
+Welcome to TypeElegance, the premier typing website for improving your typing skills and speed! With our user-friendly interface and engaging typing exercises, you'll be typing like a pro in no time.
+
+## Features
+
+- Typing exercises for all skill levels
+- Real-time feedback on typing speed and accuracy
+- Personalized progress tracking
+- Leaderboards to compete with other users
 
 ## Getting Started
 
-First, run the development server:
+To get started with TypeElegance, simply create an account and start typing! Our exercises are designed to be engaging and challenging, so you'll be improving your typing skills in no time.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Contributing
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+If you're interested in contributing to TypeElegance, please fork this repository and submit a pull request with your changes. We welcome contributions of all kinds, from bug fixes to new features.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## License
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

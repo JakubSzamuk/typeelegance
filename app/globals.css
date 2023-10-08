@@ -3,5 +3,16 @@
 @tailwind utilities;
 
 body, html {
-  background-color: #000000;
+  background-color: #14161A;
+}
+.roboto  {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.background {
+  background-color: rgba(29, 36, 44, 0.50);
+  backdrop-filter: blur(2px); 
+}
+.textBg {
+  color: rgba(29, 36, 44, 0.50);
 }

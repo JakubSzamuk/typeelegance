@@ -12,7 +12,7 @@ const config: Config = {
         wrong: '#931621',
         background: '#8f8f8f',
         right: '#326771',
-        secondary: '#0b0e0f',
+        secondary: '#1D242C80',
       },
     },
   },

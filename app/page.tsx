@@ -73,13 +73,14 @@ export default function Home() {
               if (input.split(" ")[key] === el) {
                 return (<m.span
                   initial={{x: -100}}
+                  key={key}
                   animate={{x: 0}}
                   transition={{duration: 4}}
                   className='text-white'>{el} </m.span>)
               } else if (input.split(" ")[key] === undefined || input.split(" ")[key] === "" || (testText.includes(input.split(" ")[key]) && input.split(" ").length == key + 1)) {
-                return <span className='text-background'>{el} </span> 
+                return <span className='text-background' key={key}>{el} </span> 
               } else {
-                return <span className='text-wrong'>{el} </span>
+                return <span className='text-wrong' key={key}>{el} </span>
               }
             })}</p>
             <p className='absolute z-10 w-11/12 text-2xl' ref={actualType}><span className='opacity-0'>{testText.split(" ").slice(0, input.split(" ").length - 1).join(" ")}</span> <span className='text-white'>{input.split(" ").findLast(() => true)}</span></p>

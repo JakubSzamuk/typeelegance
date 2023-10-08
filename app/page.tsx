@@ -31,7 +31,7 @@ export default function Home() {
       let endTime = new Date()
       
       const wordsDone = (testText.split("").filter((el, key) => el == input[key]).length) / 5
-      var timeDiff = (endTime.getTime() - startTime.getTime()) / 1000
+      var timeDiff = (endTime.getTime() - startTime!.getTime()) / 1000
       setWpm(Math.round(wordsDone / (timeDiff / 60)))
     }
   }, [input])

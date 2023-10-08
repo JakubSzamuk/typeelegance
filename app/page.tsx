@@ -19,7 +19,7 @@ export default function Home() {
     setInput('')
     return random.join(" ")
   }
-
+  
   useEffect(() => {
     window.addEventListener("click", () => {
       inputRef.current?.focus()

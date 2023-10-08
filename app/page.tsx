@@ -47,7 +47,7 @@ export default function Home() {
         setTestText(textGen(wordCount))
       }
     })
-    
+
     setTestText(textGen(wordCount))
   }, [])
 

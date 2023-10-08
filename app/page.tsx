@@ -55,7 +55,7 @@ export default function Home() {
   useEffect(() => {
     setTestText(textGen(wordCount))
   }, [wordCount])
-
+  
 
   return (
     <div className='relative h-screen w-screen overflow-hidden'>

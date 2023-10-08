@@ -8,17 +8,35 @@ export default function Home() {
   const [input, setInput] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const actualType = useRef<HTMLParagraphElement>(null)
-  const [testText, setTestText] = useState('')
+  const [testText, setTestText] = useState<string>('')
   const [wordCount, setWordCount] = useState(15)
 
+  const [startTime, setStartTime] = useState<Date>()
+  // const [endTime, setEndTime] = useState<Date>()
+  const [wpm, setWpm] = useState<number>()
 
-  console.log(wordCount)
+
   const typing_test_words = "apple banana cat dog egg fish goat hat ice jeep kite lemon moon nest owl pear quack rain sun tree umbrella violin water xylophone yak zebra add bake call dive eat find go help itch jump kick look meet nap open play quiet run sing talk use visit walk xerox yawn zip admire blink clap dance enjoy float grow hop imagine joke knit laugh mimic nap operate paint quack read smile tease unwrap visit whistle x-ray yodel zero applaud balance carve dash explore fly glide hide invent jog knead leap march nibble observe paddle quench race sew tiptoe uncover vault wiggle yank zipline abound balance camp dart excite flicker gallop hurry ignite juggle kayak linger meander nestle occupy prance question revive sneak tickle unravel vacate wander yell zestful"
   const textGen = (count: number) => {
     const random = Array.from({length: count}, () => typing_test_words.split(" ")[Math.floor(Math.random() * 100) + 1]);
     setInput('')
     return random.join(" ")
   }
+
+  useEffect(() => {
+    if (input.length == 1) {
+      setStartTime(new Date())
+      console.log(startTime)
+    } else if (input.split(" ").length == testText.split(" ").length && input != "" && input.split(" ")[input.split(" ").length - 1] == testText.split(" ")[testText.split(" ").length - 1]) {
+      let endTime = new Date()
+      
+      const wordsDone = (testText.split("").filter((el, key) => el == input[key]).length) / 5
+      var timeDiff = (endTime.getTime() - startTime.getTime()) / 1000
+      setWpm(Math.round(wordsDone / (timeDiff / 60)))
+    }
+  }, [input])
+  
+  console.log(wpm)
   
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -47,7 +65,7 @@ export default function Home() {
             <h1 className='text-white text-xl roboto'>TypeElegance</h1>
             <div className='absolute right-0 flex items-center gap-1'>
               <Keyboard size={32} color='#fff' />
-              <p className='roboto text-white'>130</p>
+              <p className='roboto text-white'>{wpm}</p>
             </div>
           </div>
           <div className='background rounded-lg w-full h-full p-16 relative flex justify-center roboto'>

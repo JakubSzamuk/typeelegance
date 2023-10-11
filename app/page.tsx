@@ -91,7 +91,7 @@ export default function Home() {
                 return <span className='text-wrong' key={key}>{el} </span>
               }
             })}</p>
-            <p className='absolute top-4 z-10 w-11/12 text-2xl' ref={actualType}><span className='opacity-0'>{testText.split(" ").slice(0, input.split(" ").length - 1).join(" ")}</span> <span className='text-white'>{input.split(" ").findLast(() => true)}</span></p>
+            <p className='absolute z-10 w-11/12 text-2xl' ref={actualType}><span className='opacity-0'>{testText.split(" ").slice(0, input.split(" ").length - 1).join(" ")}</span> <span className='text-white'>{input.split(" ").findLast(() => true)}</span></p>
           </div>
           <div className='flex relative mt-4 items-center gap-4 md:gap-0'>
             <div className='flex background p-2 gap-4 rounded-lg flex-col md:flex-row'>
@@ -105,7 +105,7 @@ export default function Home() {
           <input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} className='opacity-0 absolute'/>
         </div>
       </div>
-      <div className='absolute -top-32 right-12'>
+      <div className='absolute -top-16 md:-top-32 right-12'>
         <img src='/background.svg' draggable='false' />
       </div>
     </div>

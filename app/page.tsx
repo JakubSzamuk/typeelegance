@@ -20,6 +20,7 @@ export default function Home() {
   const textGen = (count: number) => {
     const random = Array.from({length: count}, () => typing_test_words.split(" ")[Math.floor(Math.random() * 100) + 1]);
     setInput('')
+    console.log(input)
     return random.join(" ")
   }
 
@@ -31,12 +32,12 @@ export default function Home() {
       let endTime = new Date()
       
       const wordsDone = (testText.split("").filter((el, key) => el == input[key]).length) / 5
+      console.log(wordsDone)
       var timeDiff = (endTime.getTime() - startTime!.getTime()) / 1000
       setWpm(Math.round(wordsDone / (timeDiff / 60)))
     }
   }, [input])
-  
-  console.log(wpm)
+
   
   useEffect(() => {
     window.addEventListener("click", () => {
@@ -45,31 +46,38 @@ export default function Home() {
     window.addEventListener("keydown", (e) => {
       if (e.key === "Escape") {
         setTestText(textGen(wordCount))
+        setInput("")
       }
     })
 
     setTestText(textGen(wordCount))
   }, [])
 
+  useEffect(() => {
+
+    setInput("")
+  }, [testText])
+
 
   useEffect(() => {
     setTestText(textGen(wordCount))
+    setInput("")
   }, [wordCount])
   
 
   return (
-    <div className='relative h-screen w-screen overflow-hidden'>
+    <div className='relative h-screen w-screen overflow-x-hidden py-8 md:py-0'>
       <div className='flex justify-center items-center h-screen w-screen'>
-        <div className='flex flex-col w-2/3 h-1/2 z-10'>
-          <div className='flex mb-1 w-full relative items-center'>
+        <div className={`flex flex-col w-11/12 ${wordCount == 15 ? "h-2/3" : wordCount == 30 ? "h-5/6" : "h-full"} md:w-2/3 md:h-1/2 z-10`}>
+          <div className='flex mb-1 w-full relative items-center flex-col md:flex-row'>
             <h1 className='text-white text-xl roboto'>TypeElegance</h1>
-            <div className='absolute right-0 flex items-center gap-1'>
+            <div className='md:absolute right-0 flex items-center gap-1'>
               <Keyboard size={32} color='#fff' />
               <p className='roboto text-white'>{wpm}</p>
             </div>
           </div>
-          <div className='background rounded-lg w-full h-full p-16 relative flex justify-center roboto'>
-            <p className='absolute opacity-75 w-11/12 text-2xl'>{testText.split(" ").map((el, key) => {
+          <div className='background rounded-lg w-full h-full p-4 md:p-16 relative flex justify-center roboto'>
+            <p className='opacity-75 absolute w-11/12 text-2xl'>{testText.split(" ").map((el, key) => {
               if (input.split(" ")[key] === el) {
                 return (<m.span
                   initial={{x: -100}}
@@ -83,18 +91,18 @@ export default function Home() {
                 return <span className='text-wrong' key={key}>{el} </span>
               }
             })}</p>
-            <p className='absolute z-10 w-11/12 text-2xl' ref={actualType}><span className='opacity-0'>{testText.split(" ").slice(0, input.split(" ").length - 1).join(" ")}</span> <span className='text-white'>{input.split(" ").findLast(() => true)}</span></p>
+            <p className='absolute top-4 z-10 w-11/12 text-2xl' ref={actualType}><span className='opacity-0'>{testText.split(" ").slice(0, input.split(" ").length - 1).join(" ")}</span> <span className='text-white'>{input.split(" ").findLast(() => true)}</span></p>
           </div>
-          <div className='flex relative mt-4 items-center'>
-            <div className='flex background p-2 gap-4 rounded-lg'>
-              <button onClick={() => setWordCount(15)} className={`p-1 background text-white roboto rounded-md px-6 ${wordCount == 15 ? "shadow-lg" : ""} transition-all`}>15</button>
-              <button onClick={() => setWordCount(30)} className={`p-1 background text-white roboto rounded-md px-6 ${wordCount == 30 ? "shadow-lg" : ""} transition-all`}>30</button>
-              <button onClick={() => setWordCount(60)} className={`p-1 background text-white roboto rounded-md px-6 ${wordCount == 60 ? "shadow-lg" : ""} transition-all`}>60</button>
+          <div className='flex relative mt-4 items-center gap-4 md:gap-0'>
+            <div className='flex background p-2 gap-4 rounded-lg flex-col md:flex-row'>
+              <button onClick={() => setWordCount(15)} className={`p-1 background text-white roboto rounded-md px-16 md:px-6 ${wordCount == 15 ? "shadow-lg" : ""} transition-all`}>15</button>
+              <button onClick={() => setWordCount(30)} className={`p-1 background text-white roboto rounded-md px-16 md:px-6 ${wordCount == 30 ? "shadow-lg" : ""} transition-all`}>30</button>
+              <button onClick={() => setWordCount(60)} className={`p-1 background text-white roboto rounded-md px-16 md:px-6 ${wordCount == 60 ? "shadow-lg" : ""} transition-all`}>60</button>
             </div>
-            <button onClick={() => setTestText(textGen(wordCount))} className='background absolute right-0 rounded-lg text-white roboto p-3 px-12'>Restart</button>
+            <button onClick={() => {setTestText(textGen(wordCount)); setInput("")}} className='background md:absolute right-0 rounded-lg text-white roboto p-3 w-full md:w-min h-full md:px-12'>Restart</button>
           </div>
 
-          <input ref={inputRef} onChange={(e) => setInput(e.target.value)} className='opacity-0 absolute'/>
+          <input ref={inputRef} value={input} onChange={(e) => setInput(e.target.value)} className='opacity-0 absolute'/>
         </div>
       </div>
       <div className='absolute -top-32 right-12'>

@@ -1,15 +1,3 @@
-# FILEPATH: typing_website.py
-
-class TypingWebsite:
-  def __init__(self, name):
-    self.name = name
-    self.words_per_minute = 0
-
-  def calculate_words_per_minute(self, words_typed, time_elapsed):
-    self.words_per_minute = words_typed / (time_elapsed / 60)
-
-# FILEPATH: README.md
-
 # TypeElegance Typing Website
 
 Welcome to TypeElegance, the premier typing website for improving your typing skills and speed! With our user-friendly interface and engaging typing exercises, you'll be typing like a pro in no time.

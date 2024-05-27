@@ -43,7 +43,7 @@ export default function Home() {
   const set_focus = () => {
       inputRef.current?.focus()
   }
-  const reset_text = (e) => {
+  const reset_text = (e: any) => {
     if (e.key === "Escape") {
       setTestText(textGen(wordCount))
       setInput("")

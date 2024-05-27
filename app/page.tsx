@@ -38,23 +38,33 @@ export default function Home() {
     }
   }, [input])
 
+
+
+  const set_focus = () => {
+      inputRef.current?.focus()
+  }
+  const reset_text = (e) => {
+    if (e.key === "Escape") {
+      setTestText(textGen(wordCount))
+      setInput("")
+    }
+  }
+
+  
   
   useEffect(() => {
-    window.addEventListener("click", () => {
-      inputRef.current?.focus()
-    })
-    window.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        setTestText(textGen(wordCount))
-        setInput("")
-      }
-    })
+    window.addEventListener("click", set_focus)  
+    window.addEventListener("keydown", reset_text)
 
     setTestText(textGen(wordCount))
-  }, [])
+
+    return () => {
+      window.removeEventListener("keydown", reset_text);
+      window.removeEventListener("click", set_focus);
+    }
+  }, [wordCount])
 
   useEffect(() => {
-
     setInput("")
   }, [testText])
 
